@@ -1,10 +1,10 @@
 import React from 'react';
-import FetchAPI from '../common/FetchAPI';
+import QuizShow from '../common/QuizShow';
 
 const App = () => {
   return (
     <div className="App">
-      <FetchAPI />
+      <QuizShow />
     </div>
   );
 };

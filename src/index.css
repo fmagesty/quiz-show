@@ -1,3 +1,16 @@
 body {
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+}
+button {
+  background-color: red;
+  color: black;
+  font-size: 2rem;
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  text-align: left;
 }
