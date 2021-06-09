@@ -14,9 +14,6 @@ button {
   height: fit-content;
   margin: 0rem 1rem 0rem 1rem;
 }
-.answers {
-  /* text-align: left; */
-}
 .navbar {
   display: flex;
   display: inline-flex;

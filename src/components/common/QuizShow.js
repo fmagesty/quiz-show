@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const QuizShow = () => {
   let answerArr;
@@ -28,7 +30,28 @@ const QuizShow = () => {
   const handleClick = (correct, choice) => {
     let answer = document.getElementById(choice).innerHTML;
     if (answer === correct) {
+      console.log('Correct!');
+      toast.success('Correct!', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return setCount((count) => count + 1);
+    } else {
+      console.log('Incorrect');
+      toast.error(`Incorrect! The answer was ${correct}`, {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -77,10 +100,6 @@ const QuizShow = () => {
     return setQuestions(mapData);
   };
 
-  useEffect(() => {
-    console.log(count);
-  }, [count]);
-
   return (
     <div>
       <h1>QUIZ SHOW</h1>
@@ -94,6 +113,17 @@ const QuizShow = () => {
       </ul>
       {questions}
       <h5>Total Score: {count}/50</h5>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
