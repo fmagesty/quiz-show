@@ -1,5 +1,5 @@
 {
-  "name": "trivia-show",
+  "name": "quiz-show",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fmagesty/trivia-show.git"
+    "url": "git+https://github.com/fmagesty/quiz-show.git"
   },
   "keywords": [],
   "author": "Felipe Melgaco Magesty",
