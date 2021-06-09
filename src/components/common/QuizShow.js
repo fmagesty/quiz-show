@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -6,6 +6,7 @@ const QuizShow = () => {
   let answerArr;
   const [questions, setQuestions] = useState('');
   const [count, setCount] = useState(0);
+  const [difficulty, setDifficulty] = useState('easy');
 
   // Decode the HTML strings returned from the API's json
   function decodeHtml(html) {
@@ -57,7 +58,10 @@ const QuizShow = () => {
 
   // Fetch the API
   const fetchQuestions = async () => {
-    const response = await fetch('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
+    const response = await fetch(
+      `https://opentdb.com/api.php?amount=50&category=9&type=multiple&difficulty=${difficulty}`
+    );
+    console.log(response);
     const data = await response.json();
     const mapData = data.results.map(
       (item) => (
@@ -100,17 +104,36 @@ const QuizShow = () => {
     return setQuestions(mapData);
   };
 
+  useEffect(() => {
+    toast.info(`Difficulty set to ${difficulty}`, {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, [difficulty]);
+
   return (
     <div>
       <h1>QUIZ SHOW</h1>
+      Choose difficulty:
+      <div className="difficulty-btns">
+        <button className="easy" onClick={() => setDifficulty('easy')}>
+          Easy
+        </button>
+        <button className="medium" onClick={() => setDifficulty('medium')}>
+          Medium
+        </button>
+        <button className="hard" onClick={() => setDifficulty('hard')}>
+          Hard
+        </button>
+      </div>
       <button className="start-quiz" onClick={() => fetchQuestions()}>
         Start quiz
       </button>
-      <ul>
-        <h4>TODO:</h4>
-        <li>add option to choose difficulty/theme/etc</li>
-        <li>notification when a button is clicked (correct/incorrect)</li>
-      </ul>
       {questions}
       <h5>Total Score: {count}/50</h5>
       <ToastContainer

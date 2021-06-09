@@ -19,3 +19,16 @@ button {
   display: inline-flex;
   justify-content: space-around;
 }
+.difficulty-btns {
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+.difficulty-btns > .easy {
+  color: green;
+}
+.difficulty-btns > .medium {
+  color: yellow;
+}
+.difficulty-btns > .hard {
+  color: red;
+}
