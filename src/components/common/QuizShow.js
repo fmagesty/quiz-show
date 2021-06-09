@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const QuizShow = () => {
   let answerArr;
   const [questions, setQuestions] = useState('');
+  const [count, setCount] = useState(0);
 
   // Decode the HTML strings returned from the API's json
   function decodeHtml(html) {
@@ -11,7 +12,7 @@ const QuizShow = () => {
     return txt.value;
   }
   function shuffle(array) {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
       randomIndex;
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -24,8 +25,11 @@ const QuizShow = () => {
     return array;
   }
 
-  const handleClick = (props) => {
-    console.log(props);
+  const handleClick = (correct, choice) => {
+    let answer = document.getElementById(choice).innerHTML;
+    if (answer === correct) {
+      return setCount((count) => count + 1);
+    }
   };
 
   // Fetch the API
@@ -46,17 +50,25 @@ const QuizShow = () => {
           <div className="question-main" key={item.question}>
             <h1>{decodeHtml(item.question)}</h1>
             <div className="answers">
-              <button onClick={() => handleClick(item.correct_answer)}>A</button>
-              <p>{decodeHtml(answerArr[0])}</p>
+              <button onClick={() => handleClick(item.correct_answer, item.correct_answer)}>
+                A
+              </button>
+              <p id={item.correct_answer}>{decodeHtml(answerArr[0])}</p>
               <br />
-              <button>B</button>
-              <p id="b">{decodeHtml(answerArr[1])}</p>
+              <button onClick={() => handleClick(item.correct_answer, item.incorrect_answers[0])}>
+                B
+              </button>
+              <p id={item.incorrect_answers[0]}>{decodeHtml(answerArr[1])}</p>
               <br />
-              <button>C</button>
-              <p id="c">{decodeHtml(answerArr[2])}</p>
+              <button onClick={() => handleClick(item.correct_answer, item.incorrect_answers[1])}>
+                C
+              </button>
+              <p id={item.incorrect_answers[1]}>{decodeHtml(answerArr[2])}</p>
               <br />
-              <button>D</button>
-              <p id="d">{decodeHtml(answerArr[3])}</p>
+              <button onClick={() => handleClick(item.correct_answer, item.incorrect_answers[2])}>
+                D
+              </button>
+              <p id={item.incorrect_answers[2]}>{decodeHtml(answerArr[3])}</p>
             </div>
           </div>
         )
@@ -64,6 +76,10 @@ const QuizShow = () => {
     );
     return setQuestions(mapData);
   };
+
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
 
   return (
     <div>
@@ -74,10 +90,10 @@ const QuizShow = () => {
       <ul>
         <h4>TODO:</h4>
         <li>add option to choose difficulty/theme/etc</li>
-        <li> keep track os the player's score</li>
         <li>notification when a button is clicked (correct/incorrect)</li>
       </ul>
       {questions}
+      <h5>Total Score: {count}/50</h5>
     </div>
   );
 };
