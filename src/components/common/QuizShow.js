@@ -31,7 +31,6 @@ const QuizShow = () => {
   const handleClick = (correct, choice) => {
     let answer = document.getElementById(choice).innerHTML;
     if (answer === correct) {
-      console.log('Correct!');
       toast.success('Correct!', {
         position: 'top-center',
         autoClose: 2000,
@@ -43,7 +42,6 @@ const QuizShow = () => {
       });
       return setCount((count) => count + 1);
     } else {
-      console.log('Incorrect');
       toast.error(`Incorrect! The answer was ${correct}`, {
         position: 'top-center',
         autoClose: 2000,
@@ -61,7 +59,6 @@ const QuizShow = () => {
     const response = await fetch(
       `https://opentdb.com/api.php?amount=50&category=9&type=multiple&difficulty=${difficulty}`
     );
-    console.log(response);
     const data = await response.json();
     const mapData = data.results.map(
       (item) => (
