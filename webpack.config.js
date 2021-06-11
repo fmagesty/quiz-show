@@ -1,34 +1,32 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const webpack = require('webpack');
-const isDevelopment = process.env.NODE_ENV !== 'production';
-const htmlPlugin = new HtmlWebPackPlugin({
-  template: './src/index.html',
-  filename: './index.html',
-});
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-  mode: isDevelopment ? 'development' : 'production',
+  entry: path.join(__dirname, 'src', 'index.js'),
+  output: { path: path.join(__dirname, 'build'), filename: 'index.bundle.js' },
+  mode: process.env.NODE_ENV || 'development',
+  resolve: { modules: [path.resolve(__dirname, 'src'), 'node_modules'] },
+  devServer: { contentBase: path.join(__dirname, 'src') },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: require.resolve('babel-loader'),
-          options: {
-            plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
-          },
-        },
+        use: ['babel-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+        use: ['file-loader'],
       },
     ],
   },
   plugins: [
-    htmlPlugin,
-    isDevelopment && new webpack.HotModuleReplacementPlugin(),
-    isDevelopment && new ReactRefreshWebpackPlugin(),
-  ].filter(Boolean),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'index.html'),
+    }),
+  ],
 };

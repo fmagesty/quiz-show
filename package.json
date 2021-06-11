@@ -9,7 +9,8 @@
     "start": "webpack serve --open",
     "format": "prettier --write \"src/**/*.js\"",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
