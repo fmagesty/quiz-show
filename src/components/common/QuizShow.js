@@ -74,25 +74,45 @@ const QuizShow = () => {
           <div className="question-main" key={item.question}>
             <h1>{decodeHtml(item.question)}</h1>
             <div className="answers">
-              <button onClick={() => handleClick(item.correct_answer, item.correct_answer)}>
+              <button
+                className="answer-btn"
+                onClick={() => handleClick(item.correct_answer, item.correct_answer)}
+              >
                 A
               </button>
-              <p id={item.correct_answer}>{decodeHtml(answerArr[0])}</p>
+              <p className="answer-txt" id={item.correct_answer}>
+                {decodeHtml(answerArr[0])}
+              </p>
               <br />
-              <button onClick={() => handleClick(item.correct_answer, item.incorrect_answers[0])}>
+              <button
+                className="answer-btn"
+                onClick={() => handleClick(item.correct_answer, item.incorrect_answers[0])}
+              >
                 B
               </button>
-              <p id={item.incorrect_answers[0]}>{decodeHtml(answerArr[1])}</p>
+              <p className="answer-txt" id={item.incorrect_answers[0]}>
+                {decodeHtml(answerArr[1])}
+              </p>
               <br />
-              <button onClick={() => handleClick(item.correct_answer, item.incorrect_answers[1])}>
+              <button
+                className="answer-btn"
+                onClick={() => handleClick(item.correct_answer, item.incorrect_answers[1])}
+              >
                 C
               </button>
-              <p id={item.incorrect_answers[1]}>{decodeHtml(answerArr[2])}</p>
+              <p className="answer-txt" id={item.incorrect_answers[1]}>
+                {decodeHtml(answerArr[2])}
+              </p>
               <br />
-              <button onClick={() => handleClick(item.correct_answer, item.incorrect_answers[2])}>
+              <button
+                className="answer-btn"
+                onClick={() => handleClick(item.correct_answer, item.incorrect_answers[2])}
+              >
                 D
               </button>
-              <p id={item.incorrect_answers[2]}>{decodeHtml(answerArr[3])}</p>
+              <p className="answer-txt" id={item.incorrect_answers[2]}>
+                {decodeHtml(answerArr[3])}
+              </p>
             </div>
           </div>
         )

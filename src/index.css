@@ -32,3 +32,17 @@ button {
 .difficulty-btns > .hard {
   color: red;
 }
+.answers {
+  display: inline-grid;
+  grid-template-columns: 0.5fr 9fr;
+  text-align: left;
+  align-items: baseline;
+}
+.answer-btn {
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+.answer-txt {
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
