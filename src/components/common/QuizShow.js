@@ -32,7 +32,7 @@ const QuizShow = () => {
     let answer = document.getElementById(choice).innerHTML;
     if (answer === correct) {
       toast.success('Correct!', {
-        position: 'top-center',
+        position: 'top-right',
         autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
@@ -43,7 +43,7 @@ const QuizShow = () => {
       return setCount((count) => count + 1);
     } else {
       toast.error(`Incorrect! The answer was ${correct}`, {
-        position: 'top-center',
+        position: 'top-right',
         autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
@@ -123,7 +123,7 @@ const QuizShow = () => {
 
   useEffect(() => {
     toast.info(`Difficulty set to ${difficulty}`, {
-      position: 'top-center',
+      position: 'top-right',
       autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
@@ -154,7 +154,7 @@ const QuizShow = () => {
       {questions}
       <h5>Total Score: {count}/50</h5>
       <ToastContainer
-        position="top-center"
+        position="top-right"
         autoClose={2000}
         hideProgressBar
         newestOnTop={false}
